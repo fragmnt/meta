@@ -12,9 +12,9 @@ module.exports = function (route, opts, next) {
 		var mrq = await marqeta.getUsers();
 		console.log(mrq.data)
 		try {
-			res.send({ data: mrq.data.data });
+			res.code(200).send({ status: 200, data: mrq.data.data });
 		} catch (err) {
-			res.code(500).send({ msg: 'There was an error', error: err })
+			res.code(500).send({ status: 500, msg: 'There was an error', error: err });
 		}
     });
     

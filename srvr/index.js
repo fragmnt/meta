@@ -2,9 +2,18 @@ const ffy = require('fastify')({
 	bodyLimit: 1048576 * 2,
 	logger: true
 });
+
+/**
+ * PLUGINS
+ */
+
 const cors = require('fastify-cors');
 const knex = require('./src/config/db.config');
 const helmet = require('fastify-helmet');
+
+/**
+ * CONTROLLERS
+ */
 
 const indexRouter = require('./src/routes/index');
 const router = require('./src/routes/v1/index');
@@ -19,7 +28,7 @@ ffy.register(knex, err => console.error(err));
 ffy.register(cors, { origin: true, preflight: false });
 ffy.register(helmet);
 
-// Declare routes
+// Assign routes
 
 ffy.register(indexRouter);
 ffy.register(router, { prefix: '/v1'});
