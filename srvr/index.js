@@ -4,8 +4,8 @@ const ffy = require('fastify')({
 });
 const knex = require('./src/config/db.config');
 const helmet = require('fastify-helmet');
-const router = require('./src/routes.js');
-
+const router = require('./src/routes/index');
+const userRouter = require('./src/routes/users');
 
 const PORT = 3008;
 
@@ -18,6 +18,7 @@ ffy.register(helmet);
 // Declare routes
 
 ffy.register(router, { prefix: '/v1'});
+ffy.register(userRouter, { prefix: '/v1/users'});
 
 // Run the server :.
 

@@ -30,7 +30,19 @@ hashPassword();
 Get (authToken, refreshToken) from `./src/lib/utils/jwt.js`:
 
 ```
-const jwt = require('jsonwebtoken');
+const {generateBearerToken} = require('../lib/utils/jwt');
+const jwt_decode = require('jwt-decode');
+
+const generateAuthToken = async () => {
+    var usernameString = "qfetti";
+    var authJwt = await generateBearerToken(usernameString);
+    console.log(authJwt);
+    var decoded = jwt_decode(authJwt);
+    console.log(decoded); 
+    // perhaps i should base64 encode the userId string
+};
+
+generateAuthToken();
 ```
 
 use as `Authorization: Bearer ${token}` header in request to the API.
