@@ -4,8 +4,6 @@ import {loginUser} from '../services/api';
 
 function RegisterPage() {
     let registrationForm = createRef();
-    let emailRef = createRef();
-    let pswdRef = createRef();
 
     const [email, setEmail] = useState("");
     const [pswd, setPswd] = useState("");
@@ -21,7 +19,13 @@ function RegisterPage() {
     let handleSubmit = async (event) => {
         event.preventDefault();
         var resp = await loginUser(email, pswd);
-        alert(resp);
+
+        // Log them in. Save accessToken to localStorage and refresh page.
+        if (resp.status === 200 && resp.data.exists === true) {
+
+            localStorage.setItem('token', resp.data.accessToken);
+            alert(`Logging in ${resp.data.user.email}!`);
+        }
     };
 
     return (

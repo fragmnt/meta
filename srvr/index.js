@@ -26,7 +26,7 @@ const PORT = 9080;
 // Register plugins, database instance
 
 ffy.register(knex, err => console.error(err));
-ffy.register(cors, { origin: true, preflight: false });
+ffy.register(cors, { origin: '*', preflight: true });
 ffy.register(helmet);
 ffy.register(formBody, { bodyLimit: 1048576 });
 

@@ -26,8 +26,8 @@ module.exports = function (route, opts, next) {
 	});
 
 	route.post('/login', async (req, res) => {
-		if (!req.body) return res.code(400).send({ message: "Empty body fields."});
-		if (!req.body.email && !req.body.password) {return res.code(400).send({status: 400, message: "Missing required fields for login." })};
+		if (!req.body) return res.code(500).send({ message: "Empty body fields."});
+		if (!req.body.email && !req.body.password) {return res.code(500).send({status: 500, message: "Missing required fields for login." })};
 
 		const user = {
 			emailAddress: req.body.email,
