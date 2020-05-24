@@ -43,7 +43,7 @@ module.exports = function (route, opts, next) {
 				};
 			} catch (err) {
 				res.code(500).send({ msg: 'there was an error', error: err })
-			}
+			};
 	});
 
 
