@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const salt = 15;
+const salt = 12;
 
 const obsfcPswd = async (pswd) => {
     var hshed = await bcrypt.hash(pswd, salt).then(async (hsh) => {
