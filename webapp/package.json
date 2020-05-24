@@ -1,0 +1,17 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+  	"dev":"next",
+	"start": "next"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "next": "^9.4.2",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1"
+  }
+}
