@@ -10,6 +10,7 @@ const ffy = require('fastify')({
 const cors = require('fastify-cors');
 const knex = require('./src/config/db.config');
 const helmet = require('fastify-helmet');
+const formBody = require('fastify-formbody');
 
 /**
  * CONTROLLERS
@@ -27,6 +28,7 @@ const PORT = 9080;
 ffy.register(knex, err => console.error(err));
 ffy.register(cors, { origin: true, preflight: false });
 ffy.register(helmet);
+ffy.register(formBody, { bodyLimit: 1048576 });
 
 // Assign routes
 

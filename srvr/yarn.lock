@@ -819,6 +819,14 @@ fastify-cors@^3.0.3:
     fastify-plugin "^1.6.0"
     vary "^1.1.2"
 
+fastify-formbody@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/fastify-formbody/-/fastify-formbody-3.2.0.tgz#638de5bcc91d40352bca130dc4dc292b452a251e"
+  integrity sha512-/QGuH5RGbDwsEaMzS2cyxWh+cqC42w39ZcvOmdQsNW0s4F4ubfp0De4jY3hLVRk4HeeDsF/YCDgH6pKb/PuKjA==
+  dependencies:
+    fastify-plugin "^1.6.1"
+    qs "^6.9.4"
+
 fastify-helmet@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/fastify-helmet/-/fastify-helmet-3.0.2.tgz#18513ad01535e3ea729c527a8d101f3edf03a800"
@@ -2291,6 +2299,11 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
+qs@^6.9.4:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
+  integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
 
 quick-format-unescaped@^3.0.3:
   version "3.0.3"

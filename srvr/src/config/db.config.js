@@ -13,6 +13,7 @@ const dbConfig = {
         database: process.env.MYSQL_DB_NAME,
         port: process.env.MYSQL_DB_PORT
     },
+    useNullAsDefault: true,
     pool: { min: 0, max: 7 }
     // ...options
 };
