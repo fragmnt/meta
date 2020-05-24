@@ -9,20 +9,22 @@ const helmet = require('fastify-helmet');
 const indexRouter = require('./src/routes/index');
 const router = require('./src/routes/v1/index');
 const userRouter = require('./src/routes/v1/users');
+const marqRouter = require('./src/routes/v1/marqeta');
 
 const PORT = 9080;
 
 // Register plugins, database instance
 
 ffy.register(knex, err => console.error(err));
-ffy.register(cors, { origin: true, preflight: false })
+ffy.register(cors, { origin: true, preflight: false });
 ffy.register(helmet);
 
 // Declare routes
 
-ffy.register(indexRouter, {});
+ffy.register(indexRouter);
 ffy.register(router, { prefix: '/v1'});
 ffy.register(userRouter, { prefix: '/v1/users'});
+ffy.register(marqRouter, { prefix: '/v1/mrq'})
 
 // Run the server :.
 

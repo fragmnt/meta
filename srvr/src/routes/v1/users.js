@@ -22,6 +22,7 @@ module.exports = function (route, opts, next) {
 		const usrs = await route.knex.select().from('users');
 		return res.send({ users: usrs });
 	});
+
 	route.post('/update/username', async (req, res) => {
 			var accessToken = req.headers['x-access-token'];
 			if (!accessToken) {return res
@@ -45,7 +46,6 @@ module.exports = function (route, opts, next) {
 				res.code(500).send({ msg: 'there was an error', error: err })
 			};
 	});
-
 
 	next();
 };

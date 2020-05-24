@@ -6,7 +6,9 @@ var appToken = process.env.MARQETA_APPLICATION_TOKEN;
 var accessToken = process.env.MARQETA_MASTER_ACCESS_TOKEN;
 var sandboxUrl = process.env.MARQETA_SANDBOX_BASE_URL;
 
-export const retrieveUser = async () => {
+module.exports = {
+
+retrieveUser: async () => {
     await axios.post(`${sandboxUrl}/users`,
     {
         first_name: 'E', 
@@ -29,9 +31,9 @@ export const retrieveUser = async () => {
     console.log(err);
     return err;
 });
-};
+},
 
-export const createNewUser = async () => {
+createNewUser: async () => {
     await axios.post(`${sandboxUrl}/users`, {
             "first_name": "Blue",
             "last_name": "Bird",
@@ -73,10 +75,10 @@ export const createNewUser = async () => {
         console.log(err);
         return err;
     });
-}
+},
 
-export const getUsers = async () => {
-    await axios.get(`${sandboxUrl}/users`, {  
+getUsers: async () => {
+    var resp = await axios.get(`${sandboxUrl}/users`, {  
          headers: {
         'Content-type': 'application/json',
     },
@@ -84,11 +86,9 @@ export const getUsers = async () => {
         username: `${appToken}`,
         password: `${accessToken}`
     },
-    json: true}).then((resp) => {
-        console.log(resp.data);
-        return resp.data;
-    }).catch((err) => {
-        console.log(err);
-        return err;
-    });
-};
+    json: true});
+
+    return resp;
+},
+
+}
