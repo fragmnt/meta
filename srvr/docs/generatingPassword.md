@@ -30,21 +30,29 @@ hashPassword();
 Get (authToken, refreshToken) from `./src/lib/utils/jwt.js`:
 
 ```
-const {generateBearerToken} = require('../lib/utils/jwt');
-const jwt_decode = require('jwt-decode');
 
-const generateAuthToken = async () => {
-    var usernameString = "qfetti";
-    var authJwt = await generateBearerToken(usernameString);
-    console.log(authJwt);
-    var decoded = jwt_decode(authJwt);
-    console.log(decoded); 
-    // perhaps i should base64 encode the userId string
-};
+const {signBearerToken, verifyBearerToken} = require('../lib/utils/jwt');
+const decode_token = require('jwt-decode');
 
-generateAuthToken();
+const getToken = async () => {
+   var signed =  await signBearerToken("qfetti");
+    console.log(signed);
+    var decoded = decode_token(signed);
+    console.log(decoded);
+}
+
+const checkToken = async () => {
+    var checked = await verifyBearerToken("");
+    console.log(checked)
+}
+
+getToken();
+checkToken();
 ```
 
 use as `Authorization: Bearer ${token}` header in request to the API.
 
 _reference_: https://github.com/fastify/fastify-bearer-auth
+
+
+---

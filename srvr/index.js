@@ -24,5 +24,5 @@ ffy.register(userRouter, { prefix: '/v1/users'});
 
 ffy.listen(PORT, (err, ADDRESS) => {
 	if (err) throw err;
-	ffy.log.info(`.: server listening on ${ADDRESS}`);
+	// ffy.log.info(`.: Server listening on ${ADDRESS}`);
 });
