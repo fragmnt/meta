@@ -1,0 +1,9 @@
+
+.athBtn {
+    cursor: pointer;
+    background-color: #010101;
+    color: #FFF;
+    border: none;
+    padding: .2em .4em;
+    margin-top: 1rem;
+}
