@@ -5,8 +5,10 @@ const ffy = require('fastify')({
 const cors = require('fastify-cors');
 const knex = require('./src/config/db.config');
 const helmet = require('fastify-helmet');
-const router = require('./src/routes/index');
-const userRouter = require('./src/routes/users');
+
+const indexRouter = require('./src/routes/index');
+const router = require('./src/routes/v1/index');
+const userRouter = require('./src/routes/v1/users');
 
 const PORT = 9080;
 
@@ -18,6 +20,7 @@ ffy.register(helmet);
 
 // Declare routes
 
+ffy.register(indexRouter, {});
 ffy.register(router, { prefix: '/v1'});
 ffy.register(userRouter, { prefix: '/v1/users'});
 

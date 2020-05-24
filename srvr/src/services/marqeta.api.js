@@ -92,6 +92,3 @@ export const getUsers = async () => {
         return err;
     });
 };
-
-// createNewUser();
-getUsers();

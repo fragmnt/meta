@@ -1,7 +1,7 @@
 const fp = require('fastify-plugin');
 const route = require('fastify');
-const knex = require('../config/db.config');
-const {signBearerToken, verifyBearerToken} = require('../lib/utils/jwt');
+const knex = require('../../config/db.config');
+const {signBearerToken, verifyBearerToken} = require('../../lib/utils/jwt');
 
 module.exports = function (route, opts, next) {
 	route.get('/', async (req, res) => {
