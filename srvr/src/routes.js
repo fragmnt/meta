@@ -7,8 +7,8 @@ module.exports = function (route, opts, next) {
 		return res.send({ msg: 'hello world'});
 	});
 	route.get('/users', async (req, res) => {
-		const users = await route.knex.select().from('users');
-		return res.send({ usrs: users });
+		const usrs = await route.knex.select().from('users');
+		return res.send({ users: usrs });
 	});
 	next();
 };
