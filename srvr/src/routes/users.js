@@ -32,14 +32,18 @@ module.exports = function (route, opts, next) {
 			if (!result) {return res.code(500).send({status: 500, msg: 'failed to authenticate token'})};
 			// check permissions and role for access control
 				
-			const updateResult = await route.knex('users').where({ username: result.id }).update({ nickname: req.body.name });
-			const updatedInfo = await route.knex.select('nickname').from('users').where({ username: result.id });
-			
-			if (updateResult === 1) {
-				res.code(200).send({ status: 200, success: true, msg: "The user account was updated!", data: updatedInfo });
-			} else {
-				res.code(500).send({ status: 500, err: 'Failed to update username! Try again later.'});
-			};
+			try {
+				const updateResult = await route.knex('users').where({ username: result.id }).update({ nickname: req.body.name });
+				const updatedInfo = await route.knex.select('nickname').from('users').where({ username: result.id });
+				
+				if (updateResult === 1) {
+					res.code(200).send({ status: 200, success: true, msg: "The user account was updated!", data: updatedInfo });
+				} else {
+					res.code(500).send({ status: 500, err: 'Failed to update username! Try again later.'});
+				};
+			} catch (err) {
+				res.code(500).send({ msg: 'there was an error', error: err })
+			}
 	});
 
 
