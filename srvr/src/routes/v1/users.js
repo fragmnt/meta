@@ -26,8 +26,8 @@ module.exports = function (route, opts, next) {
 	});
 
 	route.post('/login', async (req, res) => {
-		if (!req.body) return res.code(500).send({ message: "Empty body fields."});
-		if (!req.body.email && !req.body.password) {return res.code(500).send({status: 500, message: "Missing required fields for login." })};
+		if (!req.body) return res.code(400).send({ message: "Empty body fields."});
+		if (!req.body.email && !req.body.password) {return res.code(400).send({status: 400, message: "Missing required fields for login." })};
 
 		const user = {
 			emailAddress: req.body.email,
@@ -74,27 +74,36 @@ module.exports = function (route, opts, next) {
 		// check if account exists with credentials, if so, return error response, else continue on..
 
 		user.password = await obsfcPswd(user.password);
-		const inserted = await route.knex('users')
-		.insert({ email: user.emailAddress, pswdHash: user.password, username: user.username, nickname: user.nickname });
-		
-		/**
-		 * MARK: we need error handling for invalid fields. 
-		 * gotta research how to do that.
-		 * TODO: send response, reponse code for conflicting or invalid input 
-		 */
+		const exists = await route.knex.select('*').from('users').where('email', user.emailAddress);
+		if (exists === undefined || exists.length == 0) {
+			await route.knex('users')
+			.insert({ email: user.emailAddress, pswdHash: user.password, username: user.username, nickname: user.nickname });
+			
+			/**
+			 * MARK: we need error handling for invalid fields. 
+			 * gotta research how to do that.
+			 * TODO: send response, reponse code for conflicting or invalid input 
+			 * ALSO: prevent duplicate signups
+			 */
 
-		var newlyCreated = await route.knex.select('*').from('users').where('email', user.emailAddress);
-		var atok = await signBearerToken(newlyCreated.email); // or use uuid as `id` field
+			var newlyCreated = await route.knex.select('*').from('users').where('email', user.emailAddress);
+			var atok = await signBearerToken(newlyCreated[0]['email']); // or use uuid as `id` field
 
-		return res.code(201).send({
-			status: 201, 
-			user: {
-				id: newlyCreated.id,
-				username: newlyCreated.username,
-				email: newlyCreated.email
-			}, 
-			accessToken: atok 
-		});
+			return res.code(201).send({
+				status: 201, 
+				user: {
+					id: newlyCreated[0]['id'],
+					username: newlyCreated[0]['username'],
+					email: newlyCreated[0]['email']
+				}, 
+				accessToken: atok 
+			});
+		} else {
+			return res.code(409).send({
+				status: 409,
+				msg: "User already exists! Try signing up with a different email or logging in!"
+			});
+		}
 	});
 
 	route.post('/update/username', async (req, res) => {
@@ -113,7 +122,7 @@ module.exports = function (route, opts, next) {
 				const updateResult = await route.knex('users').where({ username: result.id }).update({ nickname: req.body.name });
 				const updatedInfo = await route.knex.select('nickname').from('users').where({ username: result.id });
 				
-				if (updateResult === 1) {
+				if (updateResult == 1) {
 					res.code(200).send({ status: 200, success: true, msg: "The user account was updated!", data: updatedInfo });
 				} else {
 					res.code(500).send({ status: 500, err: 'Failed to update username! Try again later.'});

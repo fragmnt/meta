@@ -1,42 +1,45 @@
 import axios from 'axios';
 
-let api = process.env.apiUrl;
+axios.defaults.baseURL = process.env.apiUrl;
 
 export const loginUser = async (pEmail, pPassword) => {
-    try {
-    const response = await axios.post(`${api}/v1/users/login`, {
-        email: pEmail,
-        password: pPassword
-    }, 
-    {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        json: true
-    });
+        const response = await axios.post('/v1/users/login', {
+            email: pEmail,
+            password: pPassword
+        }, 
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            json: true
+        }).catch((err) => {
+            if (err.response.status == 400) {
+                return err.response;
+            }
+        });
 
-    return response;
-
-} catch (err) {
-    console.log(err);
-}
+        return response;
 };
 
 export const registerUser = async (pEmail, pNickname, pUsername, pPassword) => {
-    const response = await axios.post(`${api}/v1/users/register`, {
+    const response = await axios.post('/v1/users/register', {
         email: pEmail,
         password: pPassword,
         username: pUsername,
         nickname: pNickname,
-    }, {
+    }, { 
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
         },
         json: true
+    }).catch((err) => {
+        if (err.response.status == 409) {
+            return err.response;
+        }
     });
 
-    return response;
 
+    return response;
 };
 
 export const getAllUsersFromMarqeta = async () => {

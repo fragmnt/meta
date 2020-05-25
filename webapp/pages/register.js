@@ -31,12 +31,19 @@ function RegistrationPage() {
 
     let handleSubmit = async (event) => {
         event.preventDefault();
+
         var resp = await registerUser(email, nickname, username, pswd);
-        console.log(resp);
-        if (resp && resp.status === 200 && resp.data.exists === true) {
-           // localStorage.setItem('token', resp.data.accessToken);
-           // Router.push('/');
-        };
+        
+        if (resp && resp.status === 201) {
+           localStorage.setItem('token', resp.data.accessToken);
+           Router.push('/');
+        } else if (resp && resp.status === 409) {
+            alert('Try again with a different email. This account already exists!');
+            setEmail("");
+            setPswd("");
+            setUsername("");
+            setNickname("");
+        }
     };
 
     return (

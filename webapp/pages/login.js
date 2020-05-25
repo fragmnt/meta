@@ -24,10 +24,10 @@ function LoginPage() {
         var resp = await loginUser(email, pswd);
         
         if (resp && resp.status === 200 && resp.data.exists === true) {
-
             localStorage.setItem('token', resp.data.accessToken);
-            // alert(`Logging in ${resp.data.user.email}!`);
             Router.push('/');
+        } else if (resp && resp.status === 400) {
+            alert('You didn\'t enter anything!');
         }
     };
 
