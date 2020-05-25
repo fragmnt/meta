@@ -1,15 +1,12 @@
 import axios from 'axios';
 
-let BASE_API_URL = 'http://127.0.0.1:9080'
-
 export const loginUser = async (pEmail, pPassword) => {
-    const response = await axios.post(`${BASE_API_URL}/v1/users/login`, {
+    const response = await axios.post(`${process.env.apiUrl}/v1/users/login`, {
         email: pEmail,
         password: pPassword
     }, 
     {
         headers: {
-           // 'x-access-token': '',
             'Content-Type': 'application/json'
         },
         json: true
@@ -18,7 +15,29 @@ export const loginUser = async (pEmail, pPassword) => {
     return response;
 };
 
-
-export const registerUser = (email, name, username, password) => {
-
+export const registerUser = (pEmail, pNickname, pUsername, pPassword) => {
+    const response = await axios.post(`${process.env.apiUrl}/v1/users/register`, {
+        email: pEmail,
+        password: pPassword,
+        username: pUsername,
+        nickname: pNickname,
+    }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        json: true
+    });
+    return response;
 };
+
+export const getAllUsersFromMarqeta = async () => {
+    const response = await axios.get(`${process.env.apiUrl}/v1/mrq/users`, {}, {
+        headers: {
+            'x-access-token': localStorage.getItem('token') ? localStorage.getItem('token') : null,
+            'Content-Type': 'application/json'
+        },
+        json: true
+    });
+
+    return response;
+}

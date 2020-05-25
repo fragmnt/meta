@@ -6,7 +6,7 @@ import {loginUser} from '../services/api';
 import styles from '../styles/Auth.module.css';
 
 function LoginPage() {
-    let registrationForm = createRef();
+    let loginForm = createRef();
 
     const [email, setEmail] = useState("");
     const [pswd, setPswd] = useState("");
@@ -28,7 +28,7 @@ function LoginPage() {
             localStorage.setItem('token', resp.data.accessToken);
             // alert(`Logging in ${resp.data.user.email}!`);
             Router.push('/');
-        }
+        };
     };
 
     return (
@@ -37,7 +37,7 @@ function LoginPage() {
                 <a>Return to the homepage.</a>
             </Link>
             
-            <form ref={registrationForm} onSubmit={handleSubmit}>
+            <form ref={loginForm} onSubmit={handleSubmit}>
                 
                 <h4>Welcome back! Please sign in.</h4>
 
