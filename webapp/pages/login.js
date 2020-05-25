@@ -1,4 +1,4 @@
-import React, {createRef, useState} from 'react';
+import React, {createRef, useState, useEffect} from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 
@@ -11,6 +11,10 @@ function LoginPage() {
     const [email, setEmail] = useState("");
     const [pswd, setPswd] = useState("");
 
+    useEffect(() => {
+
+    });
+
     let handleEChange = (event) => {
         setEmail(event.target.value);
     }
@@ -22,11 +26,12 @@ function LoginPage() {
     let handleSubmit = async (event) => {
         event.preventDefault();
         var resp = await loginUser(email, pswd);
-        
-        if (resp && resp.status === 200 && resp.data.exists === true) {
-            localStorage.setItem('token', resp.data.accessToken);
+        if (resp && resp.status === 200) {
+            await localStorage.setItem('token', resp.data.accessToken);
             Router.push('/');
-        } else if (resp && resp.status === 400) {
+        };
+        
+        if (resp && resp.status === 400) {
             alert('You didn\'t enter anything!');
         }
     };

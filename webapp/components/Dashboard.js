@@ -36,15 +36,16 @@ class Dashboard extends React.Component {
 
     componentDidMount = async () => {
         window.document.title = "My Account | Meta Travel"
+    
         const userData = await this.fetchUserData();
         this.setState({
-            user: {
-                email: userData.email,
-                id: userData.id,
-                nickname: userData.nickname,
-                username: userData.username,
-                pfp_url: userData.profile_photo_url
-            }
+                user: {
+                    email: userData.email,
+                    id: userData.id,
+                    nickname: userData.nickname,
+                    username: userData.username,
+                    pfp_url: userData.profile_photo_url
+                }
         });
     };
 
