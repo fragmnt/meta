@@ -29,8 +29,14 @@ function RegistrationPage() {
         setUsername(event.target.value);
     }
 
-    let handleSubmit = (event) => {
+    let handleSubmit = async (event) => {
         event.preventDefault();
+        var resp = await registerUser(email, nickname, username, pswd);
+        console.log(resp);
+        if (resp && resp.status === 200 && resp.data.exists === true) {
+           // localStorage.setItem('token', resp.data.accessToken);
+           // Router.push('/');
+        };
     };
 
     return (
@@ -43,14 +49,14 @@ function RegistrationPage() {
             <form onSubmit={handleSubmit} ref={registrationForm} className="">
                 <h4>Register to get started using Meta.</h4>
 
-                <label for="nickname">Name</label>
+                <label htmlFor="nickname">Name</label>
                 <input type='nickname' onChange={handleNChange} value={nickname} placeholder='Enter your full name' />
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <input type='username' onChange={handleUChange} value={username} placeholder='Pick a username' />
 
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input type='email' onChange={handleEChange} value={email} placeholder='Enter your email address' />
-                <label for="email">Password</label>
+                <label htmlFor="email">Password</label>
                 <input type='password' onChange={handlePChange} value={pswd} placeholder='Pick a strong password' />
 
                 <button className={styles.athBtn}>Sign up</button>

@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+let api = process.env.apiUrl;
+
 export const loginUser = async (pEmail, pPassword) => {
-    const response = await axios.post(`${process.env.apiUrl}/v1/users/login`, {
+    try {
+    const response = await axios.post(`${api}/v1/users/login`, {
         email: pEmail,
         password: pPassword
     }, 
@@ -13,10 +16,14 @@ export const loginUser = async (pEmail, pPassword) => {
     });
 
     return response;
+
+} catch (err) {
+    console.log(err);
+}
 };
 
-export const registerUser = (pEmail, pNickname, pUsername, pPassword) => {
-    const response = await axios.post(`${process.env.apiUrl}/v1/users/register`, {
+export const registerUser = async (pEmail, pNickname, pUsername, pPassword) => {
+    const response = await axios.post(`${api}/v1/users/register`, {
         email: pEmail,
         password: pPassword,
         username: pUsername,
@@ -27,11 +34,13 @@ export const registerUser = (pEmail, pNickname, pUsername, pPassword) => {
         },
         json: true
     });
+
     return response;
+
 };
 
 export const getAllUsersFromMarqeta = async () => {
-    const response = await axios.get(`${process.env.apiUrl}/v1/mrq/users`, {}, {
+    const response = await axios.get(`${api}/v1/mrq/users`, {}, {
         headers: {
             'x-access-token': localStorage.getItem('token') ? localStorage.getItem('token') : null,
             'Content-Type': 'application/json'

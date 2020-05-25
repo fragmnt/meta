@@ -32,10 +32,15 @@ function HomePage() {
                     <span>M E T A _ I D</span>
                     <h2>Decentralized Travel Identity</h2>
                     <div>Protect your identity and payment information when traveling abroad. Powered by Marqeta and DiD.</div>
-                    <Link href='/login'>
+                    <Link href='/register'>
                         <button className={styles.rgBtn}>
                             Get Started
                         </button>
+                    </Link>
+                    <Link href='/login'>
+                        <a>
+                            Already a user? Login.
+                        </a>
                     </Link>
             </>
             }
