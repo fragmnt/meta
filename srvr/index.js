@@ -19,6 +19,7 @@ const formBody = require('fastify-formbody');
 const indexRouter = require('./src/routes/index');
 const router = require('./src/routes/v1/index');
 const userRouter = require('./src/routes/v1/users');
+const accRouter = require('./src/routes/v1/account');
 const marqRouter = require('./src/routes/v1/marqeta');
 
 const PORT = 9080;
@@ -35,6 +36,7 @@ ffy.register(formBody, { bodyLimit: 1048576 });
 ffy.register(indexRouter);
 ffy.register(router, { prefix: '/v1'});
 ffy.register(userRouter, { prefix: '/v1/users'});
+ffy.register(accRouter, { prefix: '/v1/account'});
 ffy.register(marqRouter, { prefix: '/v1/mrq'})
 
 // Run the server :.

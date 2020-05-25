@@ -42,10 +42,22 @@ export const registerUser = async (pEmail, pNickname, pUsername, pPassword) => {
     return response;
 };
 
-export const getAllUsersFromMarqeta = async () => {
-    const response = await axios.get(`${api}/v1/mrq/users`, {}, {
+export const getUserInformation = async () => {
+    const response = await axios.get('/v1/account/info', {
         headers: {
-            'x-access-token': localStorage.getItem('token') ? localStorage.getItem('token') : null,
+            'X-Access-Token': localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        json: true
+    });
+
+    return response;
+};
+
+export const getAllUsersFromMarqeta = async () => {
+    const response = await axios.get('/v1/mrq/users', {
+        headers: {
+            'X-Access-Token': localStorage.getItem('token'),
             'Content-Type': 'application/json'
         },
         json: true
