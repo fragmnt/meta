@@ -49,6 +49,7 @@ module.exports = function (route, opts, next) {
 			var atok = await signBearerToken(getUser.email);
 
 			return res.code(200).send({ 
+				status: 200,
 				user: {
 					email: getUser.email
 				}, 

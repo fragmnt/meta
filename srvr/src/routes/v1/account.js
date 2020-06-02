@@ -9,7 +9,10 @@ module.exports = function (route, opts, next) {
 		var accessToken = req.headers['x-access-token'];
 		if (!accessToken) {
 			return res.code(401)
-			.send({status: 401, msg: 'No token provided. You are not authorized to view this resource.'})
+			.send({
+                status: 401, 
+                msg: 'No token provided. You are not authorized to view this resource.'
+            });
 		};
 
 		// verify token against client secret and against database table 
@@ -52,7 +55,14 @@ module.exports = function (route, opts, next) {
             const updatedInfo = await route.knex.select('nickname').from('users').where({ username: result.id });
             
             if (updateResult == 1) {
-                res.code(200).send({ status: 200, success: true, msg: "The user account was updated!", data: updatedInfo });
+                res.code(200).send({ 
+                    status: 200, 
+                    success: true, 
+                    msg: "The user account was updated!", 
+                    data: {
+                        username: updatedInfo
+                    } 
+                });
             } else {
                 res.code(500).send({ status: 500, err: 'Failed to update username! Try again later.'});
             };
