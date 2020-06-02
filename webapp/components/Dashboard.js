@@ -27,9 +27,9 @@ class Dashboard extends React.Component {
             if (resp.status === 200) {
                 return resp.data.user; 
             } else if (resp.status === 500) {
-                return "";
+                return;
             } else if (resp.status === 401) {
-                
+                return;
             };
         }
     };
@@ -53,12 +53,12 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                {/* pass this.state.user props to navbar */}
-                <Navbar logout={this.logOut()} user={this.state.user} />
+                {/* pass this.state.user props to navbar
+                <Navbar logout={this.logOut()} user={this.state.user} /> */}
                 <h4>M E T A _ IDentity Services Platform</h4>
                 <div>
-                    <h3>{this.state.user.nickname}!</h3>
-                    <span>{this.state.user.email}</span>
+                    <h3>{this.state.user.nickname ? this.state.user.nickname : ""}!</h3>
+                    <span>{this.state.user.email ? this.state.user.email : ""}</span>
                 </div>
                 You are logged in. This will be your dashboard.
             </div> 

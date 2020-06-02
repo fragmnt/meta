@@ -16,8 +16,7 @@ class HomePage extends React.Component {
 
     toggleAuth = () => {
         var accessToken = window.localStorage.getItem('token');
-            if (accessToken) this.setState({loggedIn : true });
-            if (!accessToken) this.setState({ loggedIn : false })
+        if (accessToken) this.setState({loggedIn : true });
     }
 
     componentDidMount() {

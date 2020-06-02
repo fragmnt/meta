@@ -6,7 +6,6 @@ const {obsfcPswd, chkObsfc} = require('../../lib/utils/obfs');
 
 module.exports = function (route, opts, next) {
 	route.get('/', async (req, res) => {
-
 		// parse request headers
 		var accessToken = req.headers['x-access-token'];
 		if (!accessToken) {
@@ -22,7 +21,11 @@ module.exports = function (route, opts, next) {
 
 		// ... perform rest of controller
 		const usrs = await route.knex.select().from('users');
-		return res.send({ users: usrs });
+		return res.send({ 
+			meta_identity_api: {
+				users: usrs
+			} 
+		});
 	});
 
 	route.post('/login', async (req, res) => {
@@ -52,9 +55,10 @@ module.exports = function (route, opts, next) {
 				exists: verified,
 				accessToken: atok
 			});
-		} else return res.code(401).send({ status: 400, msg: 'Incorrect password provided. Try again.'});
-		
-
+		} else return res.code(401).send({ 
+			status: 400, 
+			msg: 'Incorrect password provided. Try again.'
+		});
 	});
 
 	route.post('/register', async (req, res) => {
