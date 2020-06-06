@@ -8,11 +8,11 @@ var sandboxUrl = process.env.MARQETA_SANDBOX_BASE_URL;
 
 module.exports = {
 
-retrieveUser: async () => {
+retrieveUser: async (firstName, lastName) => {
     await axios.post(`${sandboxUrl}/users`,
     {
-        first_name: 'E', 
-        last_name: 'L',
+        first_name: firstName, 
+        last_name: lastName,
         active: true
     },
     {
