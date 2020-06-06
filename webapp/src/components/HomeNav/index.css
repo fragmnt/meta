@@ -1,0 +1,33 @@
+.homenav {
+    display: inline-flex;
+}
+
+.homenav > p {
+    font-weight: 600;
+    font-size: 27px;
+    margin-right: 36em;
+    margin-left: 6em;
+}
+
+.homenav > ul {
+    margin-top: 32px;
+    color: #FFF;
+    font-size: 21px;
+}
+
+.homenav > ul > li {
+    list-style-type: none;
+    display: inline;
+    padding-left: 47px;
+}
+
+.homenav > ul > li > a {
+    color: #ac80ff;
+    text-decoration: none;
+    background-color: rgba(172, 128, 255, .144);
+	padding: 8px 18px;
+	border-radius: 25px;
+	color: #fff;
+	transition: .2s ease-in-out;
+	border: 2px solid #ac80ff;
+}
