@@ -10,7 +10,9 @@
     "build": "next build"
   },
   "dependencies": {
+    "@babel/helper-validator-identifier": "^7.10.1",
     "@babel/runtime": "^7.9.6",
+    "@zeit/next-css": "^1.0.1",
     "axios": "^0.19.2",
     "babel-plugin-transform-define": "^2.0.0",
     "bootstrap": "^4.5.0",
@@ -22,6 +24,10 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.9.6"
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "css-loader": "^3.5.3",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.2"
   }
 }

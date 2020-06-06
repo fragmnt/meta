@@ -37,8 +37,9 @@ class Dashboard extends React.Component {
     componentDidMount = async () => {
         window.document.title = "My Account | Meta Travel"
     
-        const userData = await this.fetchUserData();
-        this.setState({
+    try {
+            const userData = await this.fetchUserData();
+            this.setState({
                 user: {
                     email: userData.email,
                     id: userData.id,
@@ -46,21 +47,25 @@ class Dashboard extends React.Component {
                     username: userData.username,
                     pfp_url: userData.profile_photo_url
                 }
-        });
+        })
+        } catch (err)  {
+            console.log("err")
+        }
     };
 
 
     render() {
         return (
             <div>
-                {/* pass this.state.user props to navbar
-                <Navbar logout={this.logOut()} user={this.state.user} /> */}
                 <h4>M E T A _ IDentity Services Platform</h4>
                 <div>
                     <h3>{this.state.user.nickname ? this.state.user.nickname : ""}!</h3>
                     <span>{this.state.user.email ? this.state.user.email : ""}</span>
                 </div>
                 You are logged in. This will be your dashboard.
+                <button onClick={this.logOut}>
+                    Logout
+                </button>
             </div> 
         )
     }

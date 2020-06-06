@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Router from 'next/router';
 
 import {registerUser} from '../services/api';
-import styles from '../styles/Auth.module.css';
 
 function RegistrationPage() {
     let registrationForm = createRef();
@@ -66,7 +65,7 @@ function RegistrationPage() {
                 <label htmlFor="email">Password</label>
                 <input type='password' onChange={handlePChange} value={pswd} placeholder='Pick a strong password' />
 
-                <button className={styles.athBtn}>Sign up</button>
+                <button>Sign up</button>
 
                 
             </form>

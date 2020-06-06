@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
-import styles from '../styles/HomePage.module.css';
 import Dashboard from '../components/Dashboard';
 
 
@@ -21,11 +20,12 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         this.toggleAuth();
+        window.document.title = "Meta Travel"
     }
 
     render() {
     return (
-                <div className={styles.main}>
+                <div>
                 {this.state.loggedIn === true ? 
                     <Dashboard/> 
                 : <>
@@ -33,7 +33,7 @@ class HomePage extends React.Component {
                         <h2>Decentralized Travel Identity</h2>
                         <div>Protect your identity and payment information when traveling abroad. Powered by Marqeta and DiD.</div>
                         <Link href='/register'>
-                            <button className={styles.rgBtn}>
+                            <button>
                                 Get Started
                             </button>
                         </Link>
@@ -44,6 +44,11 @@ class HomePage extends React.Component {
                         </Link>
                 </>
                 }
+                <style jsx global>
+                    {`
+                        * { margin: 0 auto; padding: 0;}
+                    `}
+                </style>
                 </div>
     )};
 }

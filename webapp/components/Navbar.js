@@ -4,9 +4,7 @@ const Navbar = (props) => {
 
     return (
         <>
-        <button onClick={() => props.logOut()}>
-                    Logout
-                </button>
+      
         </>
     )
 };

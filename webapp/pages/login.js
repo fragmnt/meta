@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Router from 'next/router';
 
 import {loginUser} from '../services/api';
-import styles from '../styles/Auth.module.css';
 
 function LoginPage() {
     let loginForm = createRef();
@@ -27,13 +26,16 @@ function LoginPage() {
         event.preventDefault();
         var resp = await loginUser(email, pswd);
         if (resp && resp.status === 200) {
-            await localStorage.setItem('token', resp.data.accessToken);
-            Router.push('/');
+            localStorage.setItem('token', resp.data.accessToken);
         };
         
+
         if (resp && resp.status === 400) {
             alert('You didn\'t enter anything!');
+            return;
         }
+
+        Router.push('/');
     };
 
     return (
@@ -51,7 +53,7 @@ function LoginPage() {
                 <label htmlFor="email">Password</label>
                 <input type='password' onChange={handlePChange} value={pswd} placeholder='Enter your password' />
                 
-                <button className={styles.athBtn}>Sign In</button>
+                <button>Sign In</button>
             
             </form>
             <Link href='/register'>
