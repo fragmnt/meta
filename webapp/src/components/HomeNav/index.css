@@ -18,10 +18,19 @@
 .homenav > ul > li {
     list-style-type: none;
     display: inline;
-    padding-left: 47px;
+    padding-left: 27px;
 }
 
 .homenav > ul > li > a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.homenav > ul > li > a:hover {
+    color: rgb(226, 226, 226);
+}
+
+.homenav > ul > li > .special {
     color: #ac80ff;
     text-decoration: none;
     background-color: rgba(172, 128, 255, .144);
@@ -30,4 +39,8 @@
 	color: #fff;
 	transition: .2s ease-in-out;
 	border: 2px solid #ac80ff;
+}
+
+.homenav > ul > li > .special:hover {
+    background-color: rgba(172, 128, 255, .344);
 }

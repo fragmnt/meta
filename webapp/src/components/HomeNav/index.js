@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import './index.css';
 
-export default class HomeNav extends Component {
+class HomeNav extends Component {
     constructor() {
 		super();
 		this.state = {};
@@ -14,13 +14,17 @@ export default class HomeNav extends Component {
                 <div className="homenav">
                     <p>Meta</p>
                     <ul>
-                        <li>Features</li>
-                        <li>Quickstart</li>
                         <li>
-                            <a href="/">Login</a>
+                            <NavLink to="/about">Features</NavLink>
                         </li>
                         <li>
-                            <a href="/">Signup</a>
+                            <NavLink to="/guide">Quickstart</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="special" to="/signin">Login</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="special" to="/signup">Signup</NavLink>
                         </li>
                     </ul>
                 </div>
@@ -28,3 +32,5 @@ export default class HomeNav extends Component {
         ) 
     }
 }
+
+export default withRouter(HomeNav);

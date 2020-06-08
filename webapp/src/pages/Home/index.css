@@ -8,26 +8,26 @@ p {
 	color: #FFF;
 }
 
-.home > h1 {
+.home > .wrapper > h1 {
 	font-size: 64px;
 	line-height: 64px;
 }
 
-.home > h1 > span {
+.home > .wrapper > h1 > span {
 	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTcuODY4IiBoZWlnaHQ9IjQuODI2IiB2aWV3Qm94PSIwIDAgMTE3Ljg2OCA0LjgyNiI+CiAgPHBhdGggaWQ9ImRvd25sb2FkIiBkPSJNMTE3LjQzNCwzLjg1M0M1OS4wMjcsNS45MzMsODQuNzg0LTIuNDYsMS41NjYsMy40MzYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0wLjU2NiAtMC4yOTgpIiBmaWxsPSJub25lIiBzdHJva2U9IiNhYzgwZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo=");
 	background-size: 100% 1rem;
 	background-repeat: no-repeat;
 	background-position: center bottom -2px;
 }
 
-.home > p {
+.home > .wrapper > p {
 	color: rgba(255, 255, 255, 0.81);
 	font-size: 27px;
 	line-height: 39px;
 	max-width: 44.8em;
 }
 
-.home > p > span {
+.home > .wrapper > p > span {
 	color: #fff;
 	font-weight: 600;
 	/* border-bottom: 2px solid
@@ -41,6 +41,7 @@ p {
 	text-align: center;
 	width: 100vw;
 	display: inline-block;
+	margin-bottom: 20px;
 }
 
 .home > .banner > span {
@@ -63,7 +64,7 @@ p {
 	color: #ac80ffcc;
 }
 
-.home > button {
+.home > .wrapper > .btn {
 	background-color: rgba(172, 128, 255, .144);
 	padding: 8px 18px;
 	border-radius: 25px;
@@ -72,9 +73,15 @@ p {
 	border: 2px solid #ac80ff;
 	font-size: 16px;
 	cursor: pointer;
+	text-decoration: none;
 }
 
-.home > button:hover {
+.home > .wrapper > .btn:hover {
 	background-color: rgba(172, 128, 255, .344);
 }
 
+.home > .wrapper {
+	margin-top: 160px;
+	margin-left: 160px;
+	margin-right: 160px;
+}
