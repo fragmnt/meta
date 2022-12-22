@@ -20,7 +20,7 @@
     "fastify-knex": "^0.1.1",
     "fastify-knexjs": "^1.0.14",
     "fastify-plugin": "^1.6.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "knex": "^0.21.1",
     "mysql2": "^2.1.0",
